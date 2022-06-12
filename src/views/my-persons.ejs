@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-md-6 text-center mb-5">
+      <h2 class="movie-text">KİŞİLERİM</h2>
+    </div>
+  </div>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <% if (locals.validation_error != undefined) { %>
+    <%- include('./partials/_mesaj') %> 
+  <%  } %> 
+  <div class="container-lg">
+      <div class="table-responsive">
+          <div class="table-wrapper">
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th>Kişi İsmi</th>
+                          <th>Telefon</th>
+                          <th>Diğer Bilgiler</th>
+                          <th>Kaldır</th>
+                      </tr>
+            </thead>
+              <tbody>
+                <%personsList.forEach(persons => {%>
+                  <tr>
+                    <td><%- persons.personName %></td>
+                    <td><%- persons.phone %></td>
+                    <td><%- persons.other %></td>
+                    <td>
+                     <a class="silme" href="/administration/removeMyPersons/<%= persons._id %> " class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                    </td>
+                  </tr>  
+                <%})%>    
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>     

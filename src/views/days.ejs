@@ -1,0 +1,45 @@
+<h1>Özel Günlerini Kaydet</h1>
+
+
+
+<div class="row">
+    <div class="col-lg-5 d-none d-lg-block bg-day-image"></div>
+    <div class="col-lg-7">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Özel Gün Kaydet</h1>
+                <% if (locals.validation_error != undefined) { %>
+                    <%- include('./partials/_mesaj') %> 
+               <%  } %> 
+            </div>
+            <form class="özel" action="/administration/days" method="post">
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="text" value="<%= typeof dayName != 'undefined' ? dayName : ''%>" name="dayName" 
+                        class="form-control form-control-user" id="exampleLastName"
+                            placeholder="Özel güne bir isim ver.">
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" value="<%= typeof importance != 'undefined' ? importance : ''%>" name="importance" 
+                        class="form-control form-control-user" id="exampleLastName"
+                            placeholder="Günün Anlam ve Önemi">
+                    </div>
+                </div>
+                <!--
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="datetime-local" value=" name="date" 
+                        class="form-control form-control-user"
+                            id="exampleInputPassword">
+                            <p>Ne zaman izleyeceksin? Belli değilse boş bırakabilirsin.</p>
+                    </div>
+                    -->
+            <div class="col-sm-6">
+                <input type="datetime" value="<%= typeof date!= 'undefined' ? date : ''%>" name= "date" 
+                    class="form-control form-control-user"
+                    id="exampleLastName" placeholder="Tarih">
+            </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                    Özel Günü Kaydet
+                </button>

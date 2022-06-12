@@ -1,0 +1,58 @@
+<div class="card o-hidden border-0 shadow-lg my-5">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+            <div class="col-lg-7">
+                <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Kullanıcı Oluşturun</h1>
+                        <% if (locals.validation_error != undefined) { %>
+                            <%- include('./partials/_mesaj') %> 
+                       <%  } %> 
+                       
+                    </div>
+                    <form class="user" action="/register" method="post">
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="text" value="<%= typeof firstName != 'undefined' ? firstName : ''%>" name="firstName" 
+                                class="form-control form-control-user" id="exampleFirstName"
+                                    placeholder="Adınız">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" value="<%= typeof lastName != 'undefined' ? lastName : ''%>" name="lastName" 
+                                class="form-control form-control-user" id="exampleLastName"
+                                    placeholder="Soyadınız">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" value="<%= typeof  email != 'undefined' ? email : ''%>" name="email" 
+                            class="form-control form-control-user" id="exampleInputEmail" placeholder="Email">
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <input type="password" value="<%= typeof password != 'undefined' ? password : ''%>" name="password" 
+                                class="form-control form-control-user"
+                                    id="exampleInputPassword" placeholder="Şifre">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="password" value="<%= typeof rePassword != 'undefined' ? rePassword : ''%>" name= "rePassword" 
+                                class="form-control form-control-user"
+                                    id="exampleRepeatPassword" placeholder="Şifre Tekrar">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                            Hesap Oluştur
+                        </button>
+                        
+                    <div class="text-center">
+                        <a class="small" href="/forget-password">Şifrenizi mi unuttunuz? Üzülmeyin.Tıklayın.</a>
+                    </div>
+                    <div class="text-center">
+                        <a class="small" href="/login">Zaten hesabın var mı? Giriş Yap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
