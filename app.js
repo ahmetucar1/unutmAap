@@ -82,7 +82,7 @@ app.use(express.urlencoded({ extended: true}))
 
 //index rota
 app.get('/', (req, res) => {
-    res.render('index', { layout: './layout/auth_layout.ejs', title:"Giriş Yap" })
+   res.json({ mesaj : 'merhaba'})
 })
 
 
@@ -91,8 +91,6 @@ app.use('/administration', administrationRouter)
 
 
 //port
-const host = '0.0.0.0'
-const PORT = process.env.PORT || 3000
-app.listen(process.env.PORT, '0.0.0.0', () => {
+app.listen(process.env.PORT, () => {
     console.log(`The server is up. Port: ${process.env.PORT}`);
 })

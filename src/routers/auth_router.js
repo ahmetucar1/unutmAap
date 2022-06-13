@@ -3,7 +3,6 @@ const authController = require('../controllers/auth_controller')
 const validatorMiddleware = require('../middlewares/validation_middleware')
 const authMiddleware = require('../middlewares/auth_middleware')
 
-router.get('/', authMiddleware.notLoggedIn, authController.showLoginForm)
 
 router.get('/login', authMiddleware.notLoggedIn, authController.showLoginForm)
 router.post('/login', authMiddleware.notLoggedIn, validatorMiddleware.validateLogin(), authController.login)
