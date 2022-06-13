@@ -2001,6 +2001,8 @@ textarea.form-control {
 
 .form-group {
   margin-bottom: 1rem;
+  margin-right: -5px;
+  margin-left: -5px;
 }
 
 .form-text {

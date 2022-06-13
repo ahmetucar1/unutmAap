@@ -76,7 +76,6 @@ const register = async (req, res, next) => {
                 await newUser.save()
                
 
-                
                 const jwtInformations = {
                     id: newUser.id,
                     mail: newUser.email
