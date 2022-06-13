@@ -52,7 +52,7 @@ const register = async (req, res, next) => {
     } else {
         
         try {
-            const _user = await User.findOne({email:req.body.email})
+            const _user = await User.findOne({ email: req.body.email })
 
             if (_user && _user.emailActive == true) {
                 req.flash('validation_error', [{msg : "Bu mail kullanımda! Acaba daha önce kayıt olmuş olabilir misin? Şifreni yenilemeyi dene!"}])
@@ -91,7 +91,6 @@ const register = async (req, res, next) => {
      
                 let transporter = nodemailer.createTransport({
                     service: 'gmail',
-                    secure: true,
                     auth: {
                         user:process.env.GMAIL_USER,
                         pass:process.env.GMAIL_PASSWORD
@@ -103,12 +102,14 @@ const register = async (req, res, next) => {
                     from: 'UnutmAap  <info@unutmaap.com',
                     to: newUser.email,
                     subject : `Merhaba ${req.body.firstName}`,
-                    html: "Hesabını doğrulamak için lütfen aşağıdaki doğrulama koduna tıkla." + `<p> ${url} </p>`
+                    text: "Hesabını doğrulamak için lütfen aşağıdaki doğrulama koduna tıkla." + url
 
                 }, (error, info) => {
                     if (error) {
-                        
+                        console.log("error" + error)
                     }
+                    console.log("Mail gönderildi");
+                    console.log(info);
                     transporter.close()
                 })
 
@@ -116,7 +117,7 @@ const register = async (req, res, next) => {
                 res.redirect('/login')
             }
         } catch (err) {
-            
+            console.log("Kullanıcı kaydedilirken bir hata olıuştu")
         }
     }
 
@@ -170,13 +171,14 @@ const forgetPassword = async (req, res, next) => {
                      from: 'UnutmAap  <info@unutmaap.com',
                      to: _user.email,
                      subject : `Merhaba ${_user.firstName}, Şifreni Güncelleyebilirsin.`,
-                     html: "Şifreni güncellemek için lütfen aşağıdaki doğrulama koduna tıkla." + `<p> ${url} </p>`
+                     text: "Şifreni güncellemek için lütfen aşağıdaki doğrulama koduna tıkla." + url
  
                  }, (error, info) => {
                      if (error) {
-                         
+                         console.log("bir hata oluştu" + error);
                      }
-                     
+                     console.log("Mail gönderidi")
+                     console.log(info);
                      transporter.close()
                  })
  
@@ -191,7 +193,7 @@ const forgetPassword = async (req, res, next) => {
                 
             
         } catch (err) {
-            
+            console.log("Kullanıcı kaydedilirken bir hata oluştu" + err)
         }
     }
 
