@@ -113,7 +113,7 @@ const register = async (req, res, next) => {
                     transporter.close()
                 })
 
-                req.flash('success_message', [{msg : `${req.body.email} adresine doğrulama kodu gönderildi.`}])
+                req.flash('success_message', [{msg : `${req.body.email} adresine doğrulama kodu gönderildi.Doğrulama kodun bağlantı hızına göre biraz gecikebilir.`}])
                 res.redirect('/login')
             }
         } catch (err) {
@@ -182,7 +182,7 @@ const forgetPassword = async (req, res, next) => {
                      transporter.close()
                  })
  
-                 req.flash('success_message', [{msg : `${req.body.email} adresine şifre güncelleme bağlantısı gönderildi.`}])
+                 req.flash('success_message', [{msg : `${req.body.email} adresine şifre güncelleme bağlantısı gönderildi.Bu kod bağlantı hızına göre biraz gecikebilir`}])
                  res.redirect('/login')
 
             } else {
