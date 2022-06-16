@@ -9,6 +9,9 @@ WEB_SITE_URL =
 GMAIL_USER =
 GMAIL_PASSWORD =
 
+ You can find the working version of the application here:
+ 
+ https://unutmaap.herokuapp.com/login
 
 
 In the project directory, you can run:
