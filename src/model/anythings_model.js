@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const AnythingSchema = new Schema({
     
-    createdAt: {
+    email: {
         type: String,
     },
     anythingName: {

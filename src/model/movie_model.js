@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const MovieSchema = new Schema({
     
-    createdAt: {
+    email: {
         type: String,
     },
     movieName: {

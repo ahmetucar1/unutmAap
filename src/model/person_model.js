@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const PersonSchema = new Schema({
     
+    email: {
+        type: String,
+    },
     personName: {
         type: String,
         required: [true, "Ad alanı boş olamaz"],

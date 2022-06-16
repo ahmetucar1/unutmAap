@@ -53,7 +53,7 @@ const saveMovies = async function (req, res, next) {
     if(!errors.isEmpty()) {
 
         req.flash('validation_error', errors.array())
-        req.flash('createdAt', req.user.createdAt)
+        req.flash('email', req.user.email)
         req.flash('movieName', req.body.movieName)
         req.flash('directorName', req.body.directorName)
         req.flash('kind', req.body.kind)
@@ -61,8 +61,8 @@ const saveMovies = async function (req, res, next) {
          
     } else { 
         const newMovie = Movie({
-            createdAt:req.user.createdAt,
-            movieName:req.body.movieName,
+            email:req.user.email,
+            movieName: await bcrypt.hash(req.body.password, 10),
             directorName:req.body.directorName,
             kind:req.body.kind
         
@@ -77,7 +77,7 @@ const saveMovies = async function (req, res, next) {
 
 const showMyMovies = function (req, res, next) {
     
-    Movie.find({createdAt:req.user.createdAt}, function(err, movies) {
+    Movie.find({email:req.user.email}, function(err, movies) {
     res.render('my-movies', {user:req.user, moviesList:movies, layout: './layout/administration_layout.ejs', title:'Hoşgeldiniz'})})
      
 }
@@ -104,7 +104,7 @@ const saveBooks = async function (req, res, next) {
     if(!errors.isEmpty()) {
 
         req.flash('validation_error', errors.array())
-        req.flash('createdAt', req.user.createdAt)
+        req.flash('email', req.user.email)
         req.flash('bookName', req.body.bookName)
         req.flash('writerName', req.body.writerName)
         req.flash('genre', req.body.genre)
@@ -112,7 +112,7 @@ const saveBooks = async function (req, res, next) {
          
     } else { 
         const newBook = Book({
-            createdAt:req.user.createdAt,
+            email:req.user.email,
             bookName:req.body.bookName,
             writerName:req.body.writerName,
             genre:req.body.genre
@@ -128,7 +128,7 @@ const saveBooks = async function (req, res, next) {
 
 const showMyBooks = function (req, res, next) {
     
-    Book.find({createdAt:req.user.createdAt}, function(err, books) {
+    Book.find({emailt:req.user.email}, function(err, books) {
     res.render('my-books', {user:req.user, booksList:books, layout: './layout/administration_layout.ejs', title:'Hoşgeldiniz'})})
      
 }
@@ -155,7 +155,7 @@ const saveDays = async function (req, res, next) {
     if(!errors.isEmpty()) {
 
         req.flash('validation_error', errors.array())
-        req.flash('createdAt', req.user.createdAt)
+        req.flash('email', req.user.email)
         req.flash('dayName', req.body.dayName)
         req.flash('importance', req.body.importance)
         req.flash('date', req.body.date)
@@ -163,7 +163,7 @@ const saveDays = async function (req, res, next) {
          
     } else { 
         const newDay = Day({
-            createdAt:req.user.createdAt,
+            email:req.user.email,
             dayName:req.body.dayName,
             importance:req.body.importance,
             date:req.body.date
@@ -179,7 +179,7 @@ const saveDays = async function (req, res, next) {
 
 const showMyDays = function (req, res, next) {
     
-    Day.find({createdAt:req.user.createdAt}, function(err, days) {
+    Day.find({email:req.user.email}, function(err, days) {
     res.render('my-days', {user:req.user, daysList:days, layout: './layout/administration_layout.ejs', title:'Hoşgeldiniz'})})
      
 }
@@ -206,7 +206,7 @@ const savePersons = async function (req, res, next) {
     if(!errors.isEmpty()) {
 
         req.flash('validation_error', errors.array())
-        req.flash('createdAt', req.user.createdAt)
+        req.flash('email', req.user.email)
         req.flash('personName', req.body.personName)
         req.flash('phone', req.body.phone)
         req.flash('other', req.body.other)
@@ -214,7 +214,7 @@ const savePersons = async function (req, res, next) {
          
     } else { 
         const newPerson = Person({
-            createdAt:req.user.createdAt,
+            email:req.user.email,
             personName:req.body.personName,
             phone:req.body.phone,
             other:req.body.other
@@ -230,7 +230,7 @@ const savePersons = async function (req, res, next) {
 
 const showMyPersons = function (req, res, next) {
     
-    Person.find({createdAt:req.user.createdAt}, function(err, persons) {
+    Person.find({email:req.user.email}, function(err, persons) {
     res.render('my-persons', {user:req.user, personsList:persons, layout: './layout/administration_layout.ejs', title:'Hoşgeldiniz'})})
      
 }
@@ -257,7 +257,7 @@ const saveAnythings = async function (req, res, next) {
     if(!errors.isEmpty()) {
 
         req.flash('validation_error', errors.array())
-        req.flash('createdAt', req.user.createdAt)
+        req.flash('email', req.user.email)
         req.flash('anythingName', req.body.anythingName)
         req.flash('anything', req.body.anything)
         req.flash('date', req.body.date)
@@ -265,8 +265,8 @@ const saveAnythings = async function (req, res, next) {
          
     } else { 
         const newAnything = Anything({
-            createdAt:req.user.createdAt,
-            anythingName:req.body.anythingName,
+            email:req.user.email,
+            anythingName:req.body.anythingName, 
             anything:req.body.anything,
             date:req.body.date
         
@@ -281,7 +281,7 @@ const saveAnythings = async function (req, res, next) {
 
 const showMyAnythings = function (req, res, next) {
     
-    Anything.find({createdAt:req.user.createdAt}, function(err, anythings) {
+    Anything.find({email:req.user.email}, function(err, anythings) {
     res.render('my-anythings', {user:req.user, anythingsList:anythings, layout: './layout/administration_layout.ejs', title:'Hoşgeldiniz'})})
      
 }
@@ -308,14 +308,12 @@ const saveOffers = async function (req, res, next) {
     if(!errors.isEmpty()) {
 
         req.flash('validation_error', errors.array())
-        req.flash('createdAt', req.user.createdAt)
         req.flash('email', req.body.email)
         req.flash('offer', req.body.offer)
         res.redirect('/administration/offers')
          
     } else { 
         const newOffer = Offer({
-            createdAt:req.user.createdAt,
             email:req.body.email,
             offer:req.body.offer
         })

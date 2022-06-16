@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const OfferSchema = new Schema({
     
-    createdAt: {
+    email: {
         type: String,
     },
     email: {

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const DaySchema = new Schema({
     
-    createdAt: {
+    email: {
         type: String,
     },
     dayName: {
